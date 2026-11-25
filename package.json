@@ -1,0 +1,86 @@
+{
+  "name": "@argszero/dsh-composer-speed-window",
+  "description": "The composer speed reading over the last N decode-timed steps, next to the lifetime average the shipped pill shows. deepseek-harness discussion #14297.",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/argszero/dsh-composer-speed-window.git"
+  },
+  "homepage": "https://github.com/argszero/dsh-composer-speed-window#readme",
+  "bugs": {
+    "url": "https://github.com/argszero/dsh-composer-speed-window/issues"
+  },
+  "keywords": [
+    "cordis",
+    "deepseek-harness",
+    "dsh",
+    "plugin",
+    "client",
+    "composer",
+    "tok/s",
+    "session-stats"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.client.json && node scripts/build-client.mjs",
+    "prepublishOnly": "npm run build",
+    "test": "node --test \"test/*.spec.mjs\""
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2 || ~4.2.0-alpha.1"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.2.0-alpha.1",
+    "@deepseek-ai/dsh-api-session-controller": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-client-locale": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-client-ui-chat": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-client-ui-conversation": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-client-ui-slots": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-session": "0.2.3-alpha.2",
+    "@deepseek-ai/dsh-session-stats": "0.2.3-alpha.2",
+    "@types/react": "~18.3.1",
+    "esbuild": "^0.25.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-renderer"
+      ],
+      "platform": "web"
+    }
+  }
+}
