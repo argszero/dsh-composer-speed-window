@@ -32,7 +32,13 @@ A list that was re-paged (shorter, or with a different node where the previous f
 
 `test/window.spec.mjs` asserts both properties by counting *which* nodes the fold read, because comparing totals cannot tell a tail walk from a full fold. Measured against a naive arm — a fold that honours the eight-step limit but reads the whole list first, so it returns the same numbers — every totals assertion passes and both counting assertions fail: 7/9 there against 9/9 here.
 
+## Status
+
+The repository above is live; the **npm publication is pending**, so `dsh plugin add` cannot resolve the package name yet. This page changes when it can.
+
 ## Install
+
+Once published:
 
 ```sh
 dsh plugin add @argszero/dsh-composer-speed-window
